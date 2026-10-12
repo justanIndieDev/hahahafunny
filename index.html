@@ -18,13 +18,24 @@
   <main>
     <h1>hahahafunny</h1>
     <p>the website is doing website things.</p>
-    <button id="surprise">Open surprise</button>
+    <button id="surprise">hidden surprise</button>
   </main>
   <script>
     document.getElementById("surprise").addEventListener("click", () => {
-      const popup = window.open(new URL("feet.png", window.location.href).href, "feetPopup", "width=640,height=480,resizable=yes,scrollbars=yes");
-      if (!popup) {
-        alert("Your browser blocked the popup. Allow popups for this site and try again.");
+      for (let i = 1; i <= 10; i++) {
+        if (!window.confirm("Are you sure? (" + i + "/10)")) {
+          return;
+        }
+      }
+
+      let blocked = false;
+      for (let i = 1; i <= 2; i++) {
+        const popup = window.open(new URL("assets/feet.png", window.location.href).href, "feetPopup" + i, "width=640,height=480,resizable=yes,scrollbars=yes");
+        if (!popup) blocked = true;
+      }
+
+      if (blocked) {
+        alert("Your browser blocked one or more popups. Allow popups for this site and try again.");
       }
     });
   </script>
